@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Generated session artifacts — never push your actual handoffs
+handoffs/*
+!handoffs/.gitkeep
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
