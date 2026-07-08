@@ -5,6 +5,9 @@
 handoffs/*
 !handoffs/.gitkeep
 
+# Serena MCP local state
+.serena/
+
 # Editor/IDE
 .vscode/
 .idea/

@@ -65,7 +65,7 @@ Output exactly:
 - Conservative mode: `N memory candidates flagged in section 6`.
 - Aggressive mode: `N memories written, M flagged for review`.
 
-Then stop. No further chat — the user will `/clear` or open a new session.
+Then stop. No further chat — the user will clear or close the session.
 
 ## Memory integration
 
@@ -75,6 +75,10 @@ Never duplicate handoff content into memory. The split is:
 
 - **Handoff** = in-flight task state (this bug, that next step, the file we just touched).
 - **Memory** = durable facts (user preferences, project context, recurring workflows).
+
+## Relation to session-refresh
+
+`/session-refresh` wraps this skill for *in-session continuation*: it runs Passes 1–3, appends a "Refresh Continuation" section (section 8), writes a `handoffs/.refresh-pending` marker, and instructs the user to `/compact` — after which state is restored automatically (Claude Code hook) or via `/session-resume`. Use this skill directly when *ending* a session; use session-refresh when *continuing* one.
 
 ## Cross-environment notes
 

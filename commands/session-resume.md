@@ -1,17 +1,11 @@
 ---
-description: Resume from the most recent session handoff artifact.
+description: Resume from the most recent session handoff artifact (hot continuation after /session-refresh, or cold resume).
 ---
 
-Resume from the most recent session handoff:
+Follow `core/session-resume.md` at the plugin root:
 
-1. Locate `latest.md`:
-   - First check `<project_root>/handoffs/latest.md` if you're in a project folder.
-   - Otherwise check `~/Documents/claude-handoffs/latest.md`.
-   - If neither exists, tell the user no handoff was found and ask where to look.
-2. Read the artifact in full.
-3. Read every file listed in section 2 ("Key Files & Documentation").
-4. Report back in exactly three lines:
-   - Line 1: where the previous session left off
-   - Line 2: the immediate next task (from section 7)
-   - Line 3: any active blockers (from section 3 "Failing or errors")
-5. Wait for the user to confirm or redirect. Do not begin work yet.
+1. Locate `latest.md`: `<project_root>/handoffs/latest.md`, else `~/Documents/claude-handoffs/latest.md`. Neither → say no handoff found, ask where to look, stop.
+2. Check `handoffs/.refresh-pending`: exists and less than 30 minutes old → **hot continuation**; otherwise → **cold resume** (delete stale marker).
+3. Read the artifact in full, plus every file in section 2 ("Key Files & Documentation").
+4. Hot: delete the marker, confirm in one line (`Refreshed — resuming: <next action>`), and resume the section 7/8 next action immediately.
+5. Cold: report exactly three lines — where the previous session left off, the immediate next task (section 7), active blockers (section 3) — then wait for the user. Do not begin work yet.
