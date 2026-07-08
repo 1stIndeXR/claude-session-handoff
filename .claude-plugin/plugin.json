@@ -1,0 +1,8 @@
+{
+  "name": "session-handoff",
+  "version": "0.2.0",
+  "description": "Session handoff, resume, and in-session refresh (handoff → compact → auto-restore) for Claude Code, with adapters for Codex, OpenCode, and other harnesses.",
+  "author": {
+    "name": "1stIndeXR"
+  }
+}
