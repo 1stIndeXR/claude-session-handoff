@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Refresh"
+  short_description: "Refresh context and continue from a handoff"
+  default_prompt: "Use $session-refresh to checkpoint this session before compacting and continuing."

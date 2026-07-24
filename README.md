@@ -26,7 +26,7 @@ On harnesses without hooks, the last step is `/session-resume` (or "resume from 
 | Harness | Refresh command | Restore after compact | Install |
 |---|---|---|---|
 | Claude Code | `/session-refresh` | **automatic** (SessionStart hook) | install as plugin |
-| Codex | `/session-refresh` prompt | best-effort auto (AGENTS.md rule) or `/session-resume` | `./install.sh codex` + `./install.sh agents` |
+| Codex | `$session-refresh` skill | best-effort auto (AGENTS.md rule) or `$session-resume` | `./install.sh codex` + `./install.sh agents` |
 | OpenCode | `/session-refresh` command | `/session-resume` | `./install.sh opencode [project]` |
 | ZCode / anything else | paste `core/session-refresh.md` | "read handoffs/latest.md and resume" | see `adapters/generic/README.md` |
 
@@ -63,9 +63,16 @@ ln -s "$(pwd)/commands/session-refresh.md" ~/.claude/commands/session-refresh.md
 ### Codex
 
 ```bash
-./install.sh codex     # /session-refresh + /session-resume prompts → ~/.codex/prompts/
+./install.sh codex     # standalone skills → ~/.agents/skills/; compatibility prompts → ~/.codex/prompts/
 ./install.sh agents    # prints AGENTS.md snippet for best-effort auto-restore
 ```
+
+Invoke the native skills as `$session-handoff`, `$session-refresh`, and `$session-resume`.
+They are installed as standalone user skills so Codex does not add a plugin namespace prefix.
+The compatibility prompts remain available as `/prompts:session-refresh` and
+`/prompts:session-resume`.
+On a cold resume, Codex renames the active task from the handoff's original goal when
+task-title control is available; hot continuations keep their current title.
 
 ### OpenCode
 
@@ -101,7 +108,7 @@ Paste `skills/session-handoff/SKILL.md` + `template.md` into a Project's custom 
 │   ├── restore-handoff.sh           ← injects latest.md after compaction
 │   └── precompact-guard.sh          ← warns if compacting without a fresh handoff
 ├── adapters/
-│   ├── codex/                       ← prompts + AGENTS.md snippet
+│   ├── codex/                       ← standalone skills + compatibility prompts + AGENTS.md snippet
 │   ├── opencode/                    ← custom commands
 │   └── generic/                     ← any other harness
 ├── install.sh                       ← adapter installer (codex | opencode | agents)
