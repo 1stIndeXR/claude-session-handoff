@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Resume"
+  short_description: "Resume work from the latest session handoff"
+  default_prompt: "Use $session-resume to restore the latest session handoff and continue appropriately."
