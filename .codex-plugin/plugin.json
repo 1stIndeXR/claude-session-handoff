@@ -1,0 +1,22 @@
+{
+  "name": "session-handoff",
+  "version": "0.2.0",
+  "description": "Checkpoint, compact, and restore long Codex sessions without losing working state.",
+  "author": {
+    "name": "1stIndeXR"
+  },
+  "repository": "https://github.com/1stIndeXR/session-handoff-skill",
+  "license": "MIT",
+  "keywords": ["session", "handoff", "compact", "resume"],
+  "interface": {
+    "displayName": "Session Handoff",
+    "shortDescription": "Checkpoint, compact, and resume sessions",
+    "longDescription": "Preserve working state across Codex compaction and resume workflows.",
+    "developerName": "1stIndeXR",
+    "category": "Productivity",
+    "capabilities": ["Write"],
+    "defaultPrompt": [
+      "Use session refresh before compacting this conversation."
+    ]
+  }
+}
