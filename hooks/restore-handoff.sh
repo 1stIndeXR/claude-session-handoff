@@ -7,9 +7,20 @@ set -euo pipefail
 MARKER_MAX_AGE_SECS=1800   # 30 min
 SIZE_LIMIT_BYTES=51200     # 50 KB
 
+hook_input="$(cat)"
+project_dir="${CLAUDE_PROJECT_DIR:-}"
+if [ -z "$project_dir" ] && [ -n "$hook_input" ]; then
+  project_dir="$(python3 -c '
+import json
+import sys
+
+print(json.load(sys.stdin).get("cwd", ""))
+' <<< "$hook_input" 2>/dev/null || true)"
+fi
+
 root=""
-if [ -n "${CLAUDE_PROJECT_DIR:-}" ] && [ -f "${CLAUDE_PROJECT_DIR}/handoffs/latest.md" ]; then
-  root="${CLAUDE_PROJECT_DIR}/handoffs"
+if [ -n "$project_dir" ] && [ -f "${project_dir}/handoffs/latest.md" ]; then
+  root="${project_dir}/handoffs"
 elif [ -f "${HOME}/Documents/claude-handoffs/latest.md" ]; then
   root="${HOME}/Documents/claude-handoffs"
 else

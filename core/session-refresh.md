@@ -47,8 +47,8 @@ Output exactly three things and nothing more:
 1. The handoff file path written.
 2. One-sentence summary of where the session is.
 3. The harness-appropriate closing line:
-   - Harness with a post-compact auto-restore hook installed (Claude Code with this plugin): **"Now run `/compact` — state will be restored automatically after compaction."**
-   - Harness without auto-restore (Codex, OpenCode, others): **"Now run `/compact` (or clear the context), then run `/session-resume` — or just ask me to resume from the handoff."**
+   - Harness with a post-compact auto-restore hook installed (Claude Code or Codex with this plugin): **"Now run `/compact` — state will be restored automatically after compaction."**
+   - Harness without auto-restore (standalone Codex, OpenCode, others): **"Now run `/compact` (or clear the context), then run `/session-resume` — or just ask me to resume from the handoff."**
 
 Do not continue chatting. The refresh completes when the user compacts.
 
