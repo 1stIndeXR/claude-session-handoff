@@ -34,7 +34,7 @@ The portable part is just **files + markdown instructions** — `core/` is the s
 
 ## File contract (harness-independent)
 
-- `handoffs/latest.md` — always-current handoff, sections 1–8; the restore entry point
+- `handoffs/latest.md` — always-current handoff and restore entry point. Sections 1–7 hold synthesized state. A normal refresh adds section 8, **Refresh Continuation**. Selective mode first adds sections 8–10, **Verbatim-Kept Threads**, **Summarized Threads**, and **Omitted Material**, then adds **Refresh Continuation** as section 11.
 - `handoffs/YYYY-MM-DD_HHMM_<slug>.md` — history
 - `handoffs/.refresh-pending` — marker (UTC timestamp) meaning "refresh in flight, restore me after compaction"; stale after 30 minutes
 
@@ -42,6 +42,12 @@ The portable part is just **files + markdown instructions** — `core/` is the s
 
 - **Conservative** (default) — artifact only; durable facts listed in section 6 for later approval.
 - **Aggressive** (`/session-refresh aggressive` or `/session-handoff aggressive`) — also writes durable facts to long-term memory when available.
+- **Selective retention** (`/session-refresh selective` or `$session-refresh selective`) — classifies every conversation thread into three buckets before compaction:
+  - **Verbatim-Kept Threads** — active work, unresolved constraints, and current task state copied unchanged and replayed unchanged on restore.
+  - **Summarized Threads** — completed work whose outcome matters but whose process can be compressed.
+  - **Omitted Material** — confirmed dead ends, redundant verbosity, and unrelated side-tracking; the handoff keeps one-line titles only as an audit trail.
+
+`selective` controls retention and `aggressive` controls memory writes, so `/session-refresh selective aggressive` combines them.
 
 ## Install
 

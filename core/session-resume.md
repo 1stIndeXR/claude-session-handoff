@@ -13,12 +13,12 @@ Restore working state from the most recent session handoff. Used both for cold r
    - Marker exists and timestamp is **less than 30 minutes old** → **hot continuation**.
    - Marker missing, unreadable, or older than 30 minutes → **cold resume**. Delete a stale marker if present.
 
-3. **Read** `latest.md` in full, then read every file listed in section 2 ("Key Files & Documentation").
+3. **Read** `latest.md` in full, then read every file listed in section 2 ("Key Files & Documentation"). If a "Verbatim-Kept Threads" section exists, replay those threads unchanged as authoritative context before acting on synthesized material: preserve their exact text, order, and speaker labels; do not summarize or rewrite them.
 
 4. **Hot continuation:**
    - Delete `.refresh-pending`.
-   - Confirm to the user in one line: `Refreshed — resuming: <immediate next action from section 8>`.
-   - Resume work on the section 7 / section 8 next action immediately. Do not wait for confirmation.
+   - Confirm to the user in one line: `Refreshed — resuming: <immediate next action from Refresh Continuation>`.
+   - Resume work on the section 7 / "Refresh Continuation" next action immediately. Do not wait for confirmation.
 
 5. **Cold resume:**
    - Report back in exactly three lines:

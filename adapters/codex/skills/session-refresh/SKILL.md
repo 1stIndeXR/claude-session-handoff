@@ -9,4 +9,6 @@ Read and follow `references/session-refresh.md` exactly.
 
 For the handoff step, use `references/session-handoff.md` and `references/template.md`.
 
+Modes are independent: `aggressive` controls memory writes, while `selective` classifies conversation threads into verbatim-kept, summarized, and omitted buckets. Both arguments may be supplied. On restore, replay verbatim-kept threads unchanged before resuming the immediate next action.
+
 When native compact hooks are enabled, use the core procedure's auto-restore closing line: ask the user to compact, then stop so the `SessionStart(compact)` hook can resume automatically. If hooks are unavailable, use the no-hook closing line and direct the user to `$session-resume`.

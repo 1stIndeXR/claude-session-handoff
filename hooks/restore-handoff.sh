@@ -51,19 +51,19 @@ size=$(wc -c < "$latest" | tr -d ' ')
 if [ "$size" -gt "$SIZE_LIMIT_BYTES" ]; then
   content=$(awk '
     /^## /{keep=0}
-    /^## 1\./||/^## 2\./||/^## 3\./||/^## 7\./||/^## 8\./{keep=1}
+    /^## 1\./||/^## 2\./||/^## 3\./||/^## 7\./||/^## 8\./||/^## 9\./||/^## 10\./||/^## 11\./{keep=1}
     NR<=8{print; next}
     keep{print}
   ' "$latest")
   content="${content}
 
-[Handoff truncated by restore hook: sections 4-6 omitted, full artifact at ${latest}]"
+[Handoff truncated by restore hook: sections 4-6 omitted; selective-retention and continuation sections preserved. Full artifact at ${latest}]"
 else
   content=$(cat "$latest")
 fi
 
 if [ "$hot" = true ]; then
-  header="SESSION REFRESH RESTORE — a /session-refresh was just completed and the conversation was compacted. The handoff below is your authoritative state. Resume the 'Immediate next action' from section 8 (or section 7) NOW: confirm the restore to the user in one line, then continue working without waiting for confirmation."
+  header="SESSION REFRESH RESTORE — a /session-refresh was just completed and the conversation was compacted. The handoff below is your authoritative state. Replay any 'Verbatim-Kept Threads' unchanged, then resume the 'Immediate next action' from 'Refresh Continuation' (or section 7) NOW: confirm the restore to the user in one line, then continue working without waiting for confirmation."
 else
   header="SESSION HANDOFF (stale — written before this compaction cycle, not part of a refresh; it may not reflect the latest work). Use it as background state only."
 fi

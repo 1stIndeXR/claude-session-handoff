@@ -7,7 +7,7 @@ description: Refresh the current session in place — write a comprehensive hand
 
 Follow the core procedure in `core/session-refresh.md` (sibling of `skills/` at the plugin root) exactly. Plugin behavior:
 
-- **Mode:** conservative by default; `aggressive` argument passes through to the handoff step.
-- **Closing line (step 4):** this plugin ships a `SessionStart(compact)` hook that auto-injects `handoffs/latest.md`, so use the auto-restore variant: *"Now compact the conversation — state will be restored automatically afterward."*
-- **Marker:** write `handoffs/.refresh-pending` (step 3) — both the PreCompact guard and the restore hook key off it.
-- After the closing line, **stop**. The restore hook takes over after the user compacts; you will receive the handoff as injected context and must resume section 8's immediate next action with a one-line confirmation.
+- **Modes:** conservative memory handling and comprehensive retention by default. `aggressive` passes through to the handoff step; `selective` triggers the three-bucket retention pass. The arguments may be combined.
+- **Closing line (step 5):** this plugin ships a `SessionStart(compact)` hook that auto-injects `handoffs/latest.md`, so use the auto-restore variant: *"Now compact the conversation — state will be restored automatically afterward."*
+- **Marker:** write `handoffs/.refresh-pending` (step 4) — both the PreCompact guard and the restore hook key off it.
+- After the closing line, **stop**. The restore hook takes over after the user compacts; you will receive the handoff as injected context, replay any verbatim-kept threads unchanged, and resume the "Refresh Continuation" immediate next action with a one-line confirmation.
