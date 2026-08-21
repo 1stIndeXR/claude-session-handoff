@@ -3,7 +3,8 @@
 **Environment:** {{Code | Cowork | Chrome | Design | Chat}}
 **Working folder:** {{absolute path or N/A}}
 **Connected tools:** {{active connectors/MCPs, comma-separated, or "none"}}
-**Mode:** {{conservative | aggressive}}
+**Memory mode:** {{conservative | aggressive}}
+**Retention mode:** {{comprehensive | selective}}
 
 ---
 
@@ -51,3 +52,25 @@ Durable facts surfaced this session that could go to long-term memory. In aggres
 Concrete, actionable next step for your future self. Be specific — name the file, name the function, name the question:
 
 > ...
+
+<!-- Sections 8–10 are appended only by session-refresh selective mode. -->
+
+## 8. Verbatim-Kept Threads
+
+Active conversation threads copied exactly in their original order, including speaker labels and any required tool results. Do not paraphrase, reformat, correct, or truncate.
+
+### {{one-line thread title}}
+
+{{verbatim thread content}}
+
+## 9. Summarized Threads
+
+Completed threads whose outcomes still matter, summarized with their durable decisions and resulting constraints.
+
+- **{{one-line thread title}}:** {{concise outcome summary}}
+
+## 10. Omitted Material
+
+Audit trail only. List each confirmed dead end, redundant passage, or unrelated side track by a one-line title. Include no omitted content or rationale.
+
+- {{one-line title only}}

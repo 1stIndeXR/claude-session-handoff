@@ -41,7 +41,7 @@ This pass exists so nothing slips through synthesis. Don't polish it — it's sc
 
 ### Pass 2 — Synthesis
 
-Fold the sweep into the artifact template at `template.md` (sibling to this file). Use the exact section structure. Do not invent new sections or skip ones — write "None" if a section is empty.
+Fold the sweep into sections 1–7 of the artifact template at `template.md` (sibling to this file). Do not invent new sections or skip sections 1–7 — write "None" if one is empty. Sections 8–10 are reserved for `session-refresh selective` and are not part of a standalone handoff.
 
 ### Pass 3 — Persist
 
@@ -78,7 +78,7 @@ Never duplicate handoff content into memory. The split is:
 
 ## Relation to session-refresh
 
-`/session-refresh` wraps this skill for *in-session continuation*: it runs Passes 1–3, appends a "Refresh Continuation" section (section 8), writes a `handoffs/.refresh-pending` marker, and instructs the user to `/compact` — after which state is restored automatically (Claude Code hook) or via `/session-resume`. Use this skill directly when *ending* a session; use session-refresh when *continuing* one.
+`/session-refresh` wraps this skill for *in-session continuation*: it runs Passes 1–3, appends a "Refresh Continuation" section, writes a `handoffs/.refresh-pending` marker, and instructs the user to `/compact` — after which state is restored automatically (Claude Code hook) or via `/session-resume`. Its optional `selective` mode also appends sections 8–10 from the template so active threads return verbatim while completed and omitted threads are compressed. Use this skill directly when *ending* a session; use session-refresh when *continuing* one.
 
 ## Cross-environment notes
 
